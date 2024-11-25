@@ -37,13 +37,13 @@ namespace MvcOnlineTicariOtomasyon.Controllers
 		[HttpPost]
 		public ActionResult PersonelEkle(Personel personel)
 		{
-			if (Request.Files.Count > 0)
+			if (Request.Files.Count > 0) //Yaptığım istekler arasında bir dosya mevcutsa
 			{
 				string dosyaadi = Path.GetFileName(Request.Files[0].FileName);
 				string uzanti = Path.GetExtension(Request.Files[0].FileName);
-				string yol = "~/Images/" + dosyaadi + uzanti;
+				string yol = "~/Image/" + dosyaadi + uzanti;
 				Request.Files[0].SaveAs(Server.MapPath(yol));
-				personel.PersonelGorsel = "/Images/" + dosyaadi + uzanti;
+				personel.PersonelGorsel = "/Image/" + dosyaadi + uzanti;
 			}
 			context.Personels.Add(personel);
 			context.SaveChanges();
@@ -69,9 +69,9 @@ namespace MvcOnlineTicariOtomasyon.Controllers
 			{
 				string dosyaadi = Path.GetFileName(Request.Files[0].FileName);
 				string uzanti = Path.GetExtension(Request.Files[0].FileName);
-				string yol = "~/Images/" + dosyaadi + uzanti;
+				string yol = "~/Image/" + dosyaadi + uzanti;
 				Request.Files[0].SaveAs(Server.MapPath(yol));
-				personel.PersonelGorsel = "/Images/" + dosyaadi + uzanti;
+				personel.PersonelGorsel = "/Image/" + dosyaadi + uzanti;
 			}
 			var Personel = context.Personels.Find(personel.Personelid);
 			Personel.PersonelAd = personel.PersonelAd;
