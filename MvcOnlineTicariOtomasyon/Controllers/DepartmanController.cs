@@ -7,6 +7,7 @@ using MvcOnlineTicariOtomasyon.Models.Sınıflar;
 
 namespace MvcOnlineTicariOtomasyon.Controllers
 {
+    [Authorize]
     public class DepartmanController : Controller
     {
         // GET: Departman
@@ -16,6 +17,7 @@ namespace MvcOnlineTicariOtomasyon.Controllers
             var degerler = c.Departmans.Where(x => x.Durum == true).ToList();
             return View(degerler);
         }
+        [Authorize(Roles = "A")]
         [HttpGet]
         public ActionResult DepartmanEkle()
         {
@@ -59,7 +61,7 @@ namespace MvcOnlineTicariOtomasyon.Controllers
             var degerler = c.SatisHarekets.Where(x => x.Personelid == id).ToList();
             var per = c.Personels.Where(x => x.Personelid == id).Select(y => y.PersonelAd + "" + y.PersonelSoyad).FirstOrDefault();
             ViewBag.dpers = per;
-                return View(degerler);
+            return View(degerler);
         }
     }
 }

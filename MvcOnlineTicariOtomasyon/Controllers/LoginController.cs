@@ -8,7 +8,7 @@ using System.Web.Security;
 
 namespace MvcOnlineTicariOtomasyon.Controllers
 {
-    [AllowAnonymous]
+    [AllowAnonymous] //Beni Authorize dan muaf tut
     public class LoginController : Controller
     {
         Context context = new Context();

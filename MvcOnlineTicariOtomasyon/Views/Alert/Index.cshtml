@@ -1,0 +1,65 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script src="~/Scripts/jquery-3.7.0.js"></script>
+
+<br />
+<br />
+<button class="btn btn-primary" id="btn1">Buton 1</button>
+<button class="btn btn-warning" id="btn2">Buton 2</button>
+<button class="btn btn-info" id="btn3">Buton 3</button>
+<button class="btn btn-danger" id="btn4">Buton 4</button>
+<button class="btn btn-default" style="background-color: lightcoral" id="btn5">Buton 5</button>
+
+<script>
+    $('#btn1').click(function () {
+        swal("Hello World!")
+    });
+</script>
+
+<script>
+    $('#btn2').click(function () {
+        swal("Hello World!", "Sweet Alert kullanımını öğrendiğimiz bu ders çok keyifli geçmektedir.")
+    });
+</script>
+
+<script>
+    $('#btn3').click(function () {
+        swal("Başarıyla Giriş Yaptınız!", "Sayın kullanıcımız, sistemimize başarıyla giriş yapmış bulunmaktasınız.", "success")
+    });
+</script>
+
+<script>
+    $('#btn4').click(function () {
+        swal("Ya butona ya da modalın dışına tıklayın.")
+            .then((value) => {
+                swal(`Dönen değer: ${value}`);
+            });
+    });
+</script>
+
+<script>
+    $('#btn5').click(function () {
+        swal({
+            title: "Emin misiniz?",
+            text: "Bir kez silerseniz, bu hayali dosyayı geri getiremezsiniz!",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+        })
+            .then((willDelete) => {
+                if (willDelete) {
+                    swal("Puff! Hayali dosyanız silindi!", {
+                        icon: "success",
+                    });
+                } else {
+                    swal("Hayali dosyanız güvende!");
+                }
+            });
+    });
+</script>
+

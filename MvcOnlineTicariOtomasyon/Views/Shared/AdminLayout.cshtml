@@ -106,6 +106,14 @@
                             <div class="sb-nav-link-icon"><i class="fas fa-calendar"></i></div>
                             Faturalar
                         </a>
+                        <a class="nav-link" href="/Fatura/Dinamik/">
+                            <div class="sb-nav-link-icon"><i class="fas fa-file-signature"></i></div>
+                            Dinamik Faturalar
+                        </a>
+                        <a class="nav-link" href="/Personel/PersonelList/">
+                            <div class="sb-nav-link-icon"><i class="fas fa-users-cog"></i></div>
+                            Personel Tablosu
+                        </a>
                         <a class="nav-link" href="index.html">
                             <div class="sb-nav-link-icon"><i class="fas fa-dollar-sign"></i></div>
                             !!Giderler!!
@@ -134,9 +142,13 @@
                             <div class="sb-nav-link-icon"><i class="fas fa-university"></i></div>
                             Ürün Detay
                         </a>
-                        <a class="nav-link" href="/Istatistik/SimpleTables/">
+                        @if(User.IsInRole("A"))
+                        { 
+                        <a class="nav-link" href="/İstatistik/kolaytablolar/">
                             <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
                             Hızlı Bakış
+                            </a>
+                            }
                         </a>
                     </div>
                 </div>

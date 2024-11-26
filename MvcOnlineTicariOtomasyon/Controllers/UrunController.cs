@@ -13,7 +13,7 @@ namespace MvcOnlineTicariOtomasyon.Controllers
     {
         // GET: Urun
         Context c = new Context();
-        public ActionResult Index(string p, int sayfa=1)
+        public ActionResult Index(string p, int sayfa = 1)
         {
             var products = c.Uruns.Where(x => x.Durum == true);
             if (!string.IsNullOrEmpty(p))
@@ -78,9 +78,35 @@ namespace MvcOnlineTicariOtomasyon.Controllers
 
         }
         public ActionResult UrunListesi()
-        { 
+        {
             var values = c.Uruns.ToList();
             return View(values);
         }
+        [HttpGet]
+        public ActionResult SatisYap(int id)
+        {
+            List<SelectListItem> personelList = (from x in c.Personels.ToList()
+                                                 select new SelectListItem
+                                                 {
+                                                     Text = x.PersonelAd + " " + x.PersonelSoyad,
+                                                     Value = x.Personelid.ToString()
+                                                 }).ToList();
+            ViewBag.PersonelList = personelList;
+
+            var urun = c.Uruns.Find(id);
+            ViewBag.UrunID = urun.Urunid;
+            ViewBag.UrunFiyat = urun.SatisFiyat;
+
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult SatisYap(SatisHareket p)
+        {
+            p.Tarih = DateTime.Parse(DateTime.Now.ToShortDateString());
+            c.SatisHarekets.Add(p);
+            c.SaveChanges();
+            return RedirectToAction("Index", "Satis");
+        }
     }
-}
+} 
